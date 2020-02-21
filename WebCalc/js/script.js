@@ -64,7 +64,6 @@ const changeEnding = (num, textVariant) => {
 };
 
 const dopOptionsString = () => {
-    // Подключим Яндекс Метрику, Гугл Аналитику и отправку заявок на почту.
     let arr = [];
     if (metrikaYandex.checked) { arr.push(' Яндекс Метрику'); }
     if (analyticsGoogle.checked) { arr.push(' Гугл Аналитику'); }
@@ -135,12 +134,6 @@ const priceCalculation = elem => {
             overPercent = overDay * (DATA.deadlinePercent[index] / 100);
         }
     }
-
-    /* if (elem.classList.contains('calc-handler')) {
-        console.log(elem);
-        elem.parentElement.children[2].textContent = elem.checked ? 'Да' : 'Нет';
-        // elem.nextElementSibling.nextElementSibling.textContent = elem.checked ? 'Да' : 'Нет';
-    } */
 
     result += DATA.price[index];
 
