@@ -64,7 +64,7 @@ const show = {
 
 const fire = () => {
 	const target = event.target;
-	if (target.tagName === 'TD' && target.classList.length === 0) {
+	if (target.tagName === 'TD' && target.classList.length === 0 && game.shipCount > 0) {
 		show.miss(target);
 		play.updateData = 'shot';
 
