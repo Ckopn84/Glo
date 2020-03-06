@@ -27,5 +27,6 @@
 
 ### День 3
 [Материал по третьему дню](https://github.com/Ckopn84/GloWorkshops/tree/seaBattleDay3/seaBattle) | 
+[Дополнительное](https://github.com/Ckopn84/GloWorkshops/tree/seaBattleAdditionalDay3/seaBattle) | 
 [Усложнённое](https://github.com/Ckopn84/GloWorkshops/tree/seaBattleHardDay3/seaBattle)
 
