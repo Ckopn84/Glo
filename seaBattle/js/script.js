@@ -21,7 +21,9 @@ const game = {
 	collision: new Set(),
 	generateShip() {
 		this.ships = [];
+		this.shipCount = 0;
 		this.collision.clear();
+
 		for (let i = 0; i < this.optionShip.count.length; i++) {
 			for (let j = 0; j < this.optionShip.count[i]; j++) {
 				const size = this.optionShip.size[i];
@@ -164,6 +166,8 @@ const clearPage = () => {
 	play.record = localStorage.getItem('seaBattleRecord') || 0;
 	play.hit = 0;
 	play.dead = 0;
+	header.textContent = 'Sea Battle';
+	header.style.color = 'black';
 	play.render();
 	game.generateShip();
 };
