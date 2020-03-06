@@ -20,6 +20,8 @@ const game = {
 	},
 	collision: new Set(),
 	generateShip() {
+		this.ships = [];
+		this.collision.clear();
 		for (let i = 0; i < this.optionShip.count.length; i++) {
 			for (let j = 0; j < this.optionShip.count[i]; j++) {
 				const size = this.optionShip.size[i];
@@ -58,7 +60,6 @@ const game = {
 			return this.generateOptionsShip(shipSize);
 		}
 
-		console.log('ship.location: ', ship.location);
 		this.addCollision(ship.location);
 
 		return ship;
@@ -157,13 +158,23 @@ const fire = () => {
 	}
 };
 
-const init = () => {
-	enemy.addEventListener('click', fire);
+const clearPage = () => {
+	document.querySelectorAll('td').forEach(item => item.classList = '');
+	play.shot = 0;
+	play.record = localStorage.getItem('seaBattleRecord') || 0;
+	play.hit = 0;
+	play.dead = 0;
 	play.render();
 	game.generateShip();
-	console.log('game: ', game);
+};
+
+const init = () => {
+	clearPage();
+	enemy.addEventListener('click', fire);
 	again.addEventListener('click', () => {
-		location.reload();
+		event.preventDefault();
+		clearPage();
+		// location.reload();
 	});
 	record.addEventListener('dblclick', () => {
 		localStorage.clear();
