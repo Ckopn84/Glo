@@ -6,33 +6,18 @@ const record = document.getElementById('record'),
 	dead = document.getElementById('dead'),
 	enemy = document.getElementById('enemy'),
 	again = document.getElementById('again'),
-	header = document.querySelector('.header');
+	header = document.querySelector('.header'),
+	maxX = 10,
+	maxY = 10,
+	minAreaConflict = 3;
 
 const game = {
-	ships: [
-		// {
-		// 	location: ['26', '36', '46', '56'],
-		// 	hit: ['', '', '', '']
-		// },
-		// {
-		// 	location: ['11', '12', '13'],
-		// 	hit: ['', '', '']
-		// },
-		// {
-		// 	location: ['69', '79'],
-		// 	hit: ['', '']
-		// },
-		// {
-		// 	location: ['32'],
-		// 	hit: ['']
-		// }
-	],
+	ships: [],
 	shipCount: 0,
 	optionShip: {
 		count: [1, 2, 3, 4],
 		size: [4, 3, 2, 1]
 	},
-	// collision: [],
 	collision: new Set(),
 	generateShip() {
 		for (let i = 0; i < this.optionShip.count.length; i++) {
@@ -53,11 +38,11 @@ const game = {
 		let x, y;
 
 		if (directon) {
-			x = Math.floor(Math.random() * 10);
-			y = Math.floor(Math.random() * (10 - shipSize));
+			x = Math.floor(Math.random() * maxX);
+			y = Math.floor(Math.random() * (maxY - shipSize));
 		} else {
-			x = Math.floor(Math.random() * (10 - shipSize));
-			y = Math.floor(Math.random() * 10);
+			x = Math.floor(Math.random() * (maxX - shipSize));
+			y = Math.floor(Math.random() * maxY);
 		}
 
 		for (let i = 0; i < shipSize; i++) {
@@ -80,7 +65,6 @@ const game = {
 	},
 	checkCollision(location) {
 		for (const coord of location) {
-			// if (this.collision.includes(coord)) {
 			if (this.collision.has(coord)) {
 				return true;
 			}
@@ -90,15 +74,12 @@ const game = {
 		for (let i = 0; i < location.length; i++) {
 			const startCoordX = location[i][0] - 1;
 
-			for (let j = startCoordX; j < startCoordX + 3; j++) {
+			for (let j = startCoordX; j < startCoordX + minAreaConflict; j++) {
 				const startCoordY = location[i][1] - 1;
 
-				for (let z = startCoordY; z < startCoordY + 3; z++) {
-					if (j >= 0 && j < 10 && z >= 0 && z < 10) {
+				for (let z = startCoordY; z < startCoordY + minAreaConflict; z++) {
+					if (j >= 0 && j < maxX && z >= 0 && z < maxY) {
 						const coord = '' + j + z;
-						/* if (!this.collision.includes(coord)) {
-							this.collision.push(coord);
-						} */
 						this.collision.add(coord);
 					}
 				}
