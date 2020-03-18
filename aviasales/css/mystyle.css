@@ -1,0 +1,10 @@
+
+.dropdown {
+	position: relative;
+	z-index: 2;
+}
+
+input {
+	position: relative;
+	z-index: 1;
+}
