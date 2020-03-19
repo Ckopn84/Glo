@@ -15,22 +15,6 @@ const citiesApi = 'http://api.travelpayouts.com/data/ru/cities.json',
 
 let city = [];
 
-/* const getData = (url, callback) => {
-	const request = new XMLHttpRequest();
-
-	request.open('GET', url);
-
-	request.addEventListener('readystatechange', () => {
-		if (request.readyState !== 4) return;
-
-		if (request.status === 200) {
-			callback(request.response);
-		} else console.error(request.status);
-	});
-
-	request.send();
-}; */
-
 const getData = (url, callback) => {
 	fetch(url)
 		.then(response => {
@@ -41,21 +25,10 @@ const getData = (url, callback) => {
 		.catch(error => console.error(error));
 };
 
-const getPrice = (inputFrom, inputTo, departDate) => {
-	inputFrom = inputFrom || 'Екатеринбург';
-	inputTo = inputTo || 'Калининград';
-	departDate = departDate || '2020-05-25';
-
-	// const IATAFrom = city.filter(item => item.name === inputFrom);
-	// const IATATo = city.filter(item => item.name === inputTo);
-	const IATAFrom = 'SVX',
-		IATATo = 'KGD';
-
-	const url = calendar + '?origin=' + IATAFrom + '&destination=' + IATATo +
-		'&depart_date=' + departDate + '&one_way=true';
-
-	getData(url, data => console.log(data.best_prices.filter(item => item.depart_date === departDate)));
-};
+const sortObj = (obj, parameter) => obj.sort((first, second) => (
+	first[parameter] > second[parameter] ? 1 :
+		first[parameter] < second[parameter] ? -1 : 0
+));
 
 const shownCity = (input, list) => {
 	list.textContent = '';
@@ -63,11 +36,12 @@ const shownCity = (input, list) => {
 	if (input.value !== '') {
 		const filterCity = city.filter(item => {
 			const fixItem = item.name.toLowerCase();
-			return fixItem.includes(input.value.toLowerCase()) &&
+			return fixItem.substr(0, input.value.length) === input.value.toLowerCase() &&
+			// return fixItem.includes(input.value.toLowerCase()) &&
 				item.name.toLowerCase() !== inputCitiesFrom.value.toLowerCase();
 		});
 
-		filterCity.forEach(item => {
+		sortObj(filterCity, 'name').forEach(item => {
 			const li = document.createElement('li');
 
 			li.classList.add('dropdown__city');
@@ -76,6 +50,22 @@ const shownCity = (input, list) => {
 			list.append(li);
 		});
 	}
+};
+
+const renderCheapDay = cheapTicket => {
+	console.log(cheapTicket);
+};
+
+const renderCheapYear = cheapTickets => {
+	console.log(sortObj(cheapTickets, 'depart_date'));
+};
+
+const renderCheap = (data, date) => {
+	const cheapTicketYear = data.best_prices;
+	const cheapTicketDay = cheapTicketYear.filter(item => item.depart_date === date);
+
+	renderCheapDay(cheapTicketDay);
+	renderCheapYear(cheapTicketYear);
 };
 
 const selectCity = (event, input, list) => {
@@ -103,12 +93,28 @@ dropdownCitiesTo.addEventListener('click', event => {
 	selectCity(event, inputCitiesTo, dropdownCitiesTo);
 });
 
-// getData(proxy + citiesApi, data => {
-// 	city = data.filter(item => item.name);
-// });
+formSearch.addEventListener('submit', event => {
+	event.preventDefault();
+
+	const formData = {
+		from: city.find(item => inputCitiesFrom.value === item.name).code,
+		to: city.find(item => inputCitiesTo.value === item.name).code,
+		when: inputDateDepert.value,
+	};
+
+	const requestData = '?origin=' + formData.from +
+		'&destination=' + formData.to +
+		'&depart_date=' + formData.when +
+		'&one_way=true&token=' + API_KEY;
+
+	// getData(proxy + calendar + requestData, data => {
+	// 	renderCheap(data, formData.when);
+	// });
+	getData(calendar + requestData, data => {
+		renderCheap(data, formData.when);
+	});
+});
 
 getData(dbCity, data => {
 	city = data.filter(item => item.name);
 });
-
-getPrice(inputCitiesFrom.value.trim(), inputCitiesTo.value.trim(), inputDateDepert.value.trim());
