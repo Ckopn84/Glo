@@ -31,17 +31,26 @@ const sortObj = (obj, parameter) => obj.sort((first, second) => (
 ));
 
 const shownCity = (input, list) => {
+	let cities = {};
+
+	const filterCity = str => city.filter(item => {
+		const fixItem = item.name.toLowerCase();
+		return fixItem.substr(0, str.length) === str.toLowerCase() &&
+		// return fixItem.includes(input.value.toLowerCase()) &&
+			item.name.toLowerCase() !== inputCitiesFrom.value.toLowerCase();
+	});
+
 	list.textContent = '';
+	input.value = input.value.replace(/[^а-я]/gi, '');
+
+	do {
+		cities = filterCity(input.value);
+		if (cities.length === 0) input.value = input.value.substr(0, input.value.length - 1);
+		console.log(cities.length, input.value);
+	} while (cities.length === 0 && input.value.length > 0);
 
 	if (input.value !== '') {
-		const filterCity = city.filter(item => {
-			const fixItem = item.name.toLowerCase();
-			return fixItem.substr(0, input.value.length) === input.value.toLowerCase() &&
-			// return fixItem.includes(input.value.toLowerCase()) &&
-				item.name.toLowerCase() !== inputCitiesFrom.value.toLowerCase();
-		});
-
-		sortObj(filterCity, 'name').forEach(item => {
+		sortObj(cities, 'name').forEach(item => {
 			const li = document.createElement('li');
 
 			li.classList.add('dropdown__city');
