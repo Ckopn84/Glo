@@ -57,7 +57,7 @@ const renderCheapDay = cheapTicket => {
 };
 
 const renderCheapYear = cheapTickets => {
-	console.log(sortObj(cheapTickets, 'depart_date'));
+	console.log(sortObj(cheapTickets, 'value'));
 };
 
 const renderCheap = (data, date) => {
