@@ -182,8 +182,8 @@ dropdownCitiesTo.addEventListener('click', event => {
 formSearch.addEventListener('submit', event => {
 	event.preventDefault();
 
-	const showAlert = elem => {
-		alert('Некорректное название города: ' + elem.value);
+	const showAlert = str => {
+		alert(str);
 	};
 
 	const formData = {
@@ -193,9 +193,9 @@ formSearch.addEventListener('submit', event => {
 	};
 
 	if (!formData.from) {
-		showAlert(inputCitiesFrom);
+		showAlert('Некорректное название города: ' + inputCitiesFrom.value);
 	} else if (!formData.to) {
-		showAlert(inputCitiesTo);
+		showAlert('Некорректное название города: ' + inputCitiesTo.value);
 	} else {
 		const requestData = '?origin=' + formData.from.code +
 			'&destination=' + formData.to.code +
@@ -207,6 +207,8 @@ formSearch.addEventListener('submit', event => {
 		// });
 		getData(calendar + requestData, data => {
 			renderCheap(data, formData.when);
+		}, error => {
+			showAlert('В данном направлении рейсов не найдено', error);
 		});
 	}
 });
