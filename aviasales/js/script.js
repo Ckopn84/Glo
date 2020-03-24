@@ -66,15 +66,13 @@ const shownCity = (input, list) => {
 
 const cityFind = (data, parameter) => city.find(item => data === item[parameter]);
 
-const getDate = date => {
-	return new Date(date).toLocaleString('ru', {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit',
-	});
-};
+const getDate = date => new Date(date).toLocaleString('ru', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+	hour: '2-digit',
+	minute: '2-digit',
+});
 
 const getChanges = num => (num ? `Пересадок: ${num}` : 'Без пересадок');
 
