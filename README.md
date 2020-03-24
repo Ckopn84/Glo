@@ -30,3 +30,17 @@
 [Дополнительное](https://github.com/Ckopn84/GloWorkshops/tree/seaBattleAdditionalDay3/seaBattle) | 
 [Усложнённое](https://github.com/Ckopn84/GloWorkshops/tree/seaBattleHardDay3/seaBattle)
 
+## [Воркшоп по JS. Пишем свой Авиасейлс](https://github.com/Ckopn84/GloWorkshops/tree/aviasales/aviasales)
+
+### День 1
+[Материал по первому дню](https://github.com/Ckopn84/GloWorkshops/tree/aviasalesDay1/aviasales)
+
+### День 2
+[Материал по второму дню](https://github.com/Ckopn84/GloWorkshops/tree/aviasalesDay2/aviasales)
+
+### День 3
+[Материал по третьему дню](https://github.com/Ckopn84/GloWorkshops/tree/aviasalesDay3/aviasales)
+
+### День 4
+[Материал по четвертому дню](https://github.com/Ckopn84/GloWorkshops/tree/aviasalesDay4/aviasales)
+
