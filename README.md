@@ -1,6 +1,8 @@
 # GloAcademy workshops
 Данный репозиторий создан для хранения материалов по воркшопам, проводимым GloAcademy
 
+## [Воркшоп по JS. Пишем свой AliExpress](https://github.com/Ckopn84/GloWorkshops/tree/alijspress/alijspress)
+
 ## Воркшоп по JS. Калькулятор вёрстки
 
 ### День 1
