@@ -1,12 +1,15 @@
 /* селектор {
 	свойство: значение;
 } */
+*, *:before, *:after {
+	box-sizing: border-box;
+}
 body {
 	background-color: #0A090A;
 	color: white;
 	font-family: 'Roboto', sans-serif;
 	/* задаём фоновую картинку (путь относительно каталога css) */
-	background-image: url('../img/main-bg.jpg');
+	background-image: url('../img/main-bg.png');
 	/* запрет повтора фоновой картинки */
 	background-repeat: no-repeat;
 	/* прижимаем к верхнему краю с расположением по середине */
@@ -27,6 +30,7 @@ body {
 	justify-content: space-between;
 	/* внутренний отступ сверху */
 	padding-top: 45px;
+	margin-bottom: 30%;
 }
 .logo {
 	font-style: normal;
@@ -58,17 +62,17 @@ body {
 	font-size: 14px;
 	line-height: 16px;
 }
-::-webkit-input-placeholder { /* Chrome */
+.search-input::-webkit-input-placeholder { /* Chrome */
   color: #AEAEAE;
 }
-:-ms-input-placeholder { /* IE 10+ */
+.search-input:-ms-input-placeholder { /* IE 10+ */
   color: #AEAEAE;
 }
-::-moz-placeholder { /* Firefox 19+ */
+.search-input::-moz-placeholder { /* Firefox 19+ */
   color: #AEAEAE;
   opacity: 1;
 }
-:-moz-placeholder { /* Firefox 4 - 18 */
+.search-input:-moz-placeholder { /* Firefox 4 - 18 */
   color: #AEAEAE;
   opacity: 1;
 }
@@ -89,4 +93,133 @@ body {
 	border-radius: 50%;
 	/* равномерное заполнение всё отведённое картинке пространство */
 	object-fit: cover;
+}
+.title {
+	margin: 0; /* сброс отступов */
+	font-family: 'Playfair Display', serif;
+	font-size: 48px;
+	line-height: 64px;
+	margin-bottom: 7px;
+}
+.title-en {
+	display: inline-block; /* задали тит строчно-блочный, что бы отработало свойство margin-bottom */
+	font-size: 20px;
+	line-height: 23px;
+	color: #787878;
+	margin-bottom: 38px;
+}
+.info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 100px;
+}
+.movie-info {
+	display: flex;
+	align-items: center;
+}
+.tag {
+	display: inline-block;
+	font-size: 16px;
+	line-height: 19px;
+	color: #333333;
+	background: #FFFFFF;
+	border-radius: 3px;
+	padding: 5px 10px;
+	margin-right: 20px;
+}
+.country {
+	font-size: 16px;
+	line-height: 19px;
+	margin-right: 33px;
+}
+.play {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	line-height: 19px;
+	color: #FFFFFF;
+	text-decoration: none; /* уюираем подчёркивание с надписи */
+}
+/* создаём псевдоэлемент, для размещения кнопки перед текстом */
+.play:before {
+	content: ' ';
+	width: 30px;
+	height: 30px;
+	background-image: url('../img/play.svg');
+	background-repeat: no-repeat;
+	background-size: 100%; /* размер картинки по размеру блока */
+	margin-right: 15px;
+}
+.more {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	line-height: 19px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.more:after {
+	content: '';
+	width: 30px;
+	height: 30px;
+	background-image: url('../img/play.svg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-left: 15px;
+	transform: rotate(90deg); /* повернули на 90градусов*/
+}
+.content {
+	display: flex;
+	justify-content: space-between;
+	background: #FFFFFF;
+	border-radius: 3px;
+	color: #000000;
+	padding: 43px 50px;
+}
+.poster {
+	display: block;
+	margin-top: -80px;
+	margin-bottom: 20px;
+}
+.button {
+	background: #FF8F27;
+	padding: 10px 44px;
+	color: #FFFFFF;
+	font-size: 14px;
+	line-height: 16px;
+	border: none;
+}
+.actors-title {
+	padding-left: 15px;
+	font-weight: 900;
+	font-size: 16px;
+	line-height: 150%;
+	margin-bottom: 10px;
+}
+.actors-list {
+	margin: 0;
+	list-style: none;
+	padding-left: 15px;
+	text-decoration: underline; /* добавили подчеркивание для текста */
+}
+.full-info {
+	flex: 0.97;
+}
+.full-content {
+	display: flex;
+	justify-content: space-between;
+}
+.tabs-content {
+	margin-right: 70px;
+}
+.tabs-item {
+	color: #000000;
+	text-decoration: none;
+	margin-right: 40px;
+	font-size: 18px;
+	line-height: 21px;
+}
+.tabs-item-active {
+	color: #FF8F27;
 }
