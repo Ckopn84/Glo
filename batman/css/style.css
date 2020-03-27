@@ -223,6 +223,10 @@ body {
 }
 .tabs-content {
 	margin-right: 70px;
+	display: none;
+}
+.visible {
+	display: block;
 }
 .tabs {
 	display: flex;
@@ -257,27 +261,38 @@ body {
 	margin-top: 0;
 }
 .subscribe-form {
-	display: flex;
+	/* display: flex; */
+	position: relative;
 	margin-bottom: 48px;
 }
 .subscribe-input {
+	width: 100%;
 	background: rgba(196, 196, 196, 0.5);
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
+	/* border-top-left-radius: 5px; */
+	/* border-bottom-left-radius: 5px; */
+	border-radius: 5px;
 	padding-top: 12px;
 	padding-bottom: 12px;
 	padding-left: 18px;
 	padding-right: 18px;
 	border: none;
+	height: 40px;
 	color: #AEAEAE;
 	font-size: 14px;
 	line-height: 16px;
 }
 .subscribe-button {
+	position: absolute;
 	background: #FF8F27;
 	border-radius: 0px 5px 5px 0px;
 	border: none;
-	padding: 12px;
+	height: 40px;
+	width: 40px;
+	padding: 9px;
+	text-align: center;
+	/* padding: 11px; */
+	top: 0;
+	right: 0;
 }
 
 @media (max-width: 1200px) {
@@ -331,7 +346,7 @@ body {
 	}
 }
 
-@media (max-width: 578px) {
+@media (max-width: 576px) {
 	.container {
 		width: 90%;
 	}
